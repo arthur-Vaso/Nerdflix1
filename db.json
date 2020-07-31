@@ -1,19 +1,21 @@
 {
-  "posts": [
+  "categorias": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "titulo": "Front End",
+      "cor": "#6BD1FF",
+      "link_extra": {
+        "text": "Formação de Front End na Alura",
+        "url": "https://www.alura.com.br/cursos-online-front-end"
+      }
     }
-  ],
-  "comments": [
+   ],
+  "videos": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "categoriaId": 1,
+      "titulo": "SEO com React",
+      "url": "https://www.youtube.com/watch?v=c8mVlakBESE"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

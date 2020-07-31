@@ -26,20 +26,19 @@ function CadastroCategoria() {
       infosDoEvento.target.value,
     );
   }
-//first commit
+  // first commit
   useEffect(() => {
     if (window.location.href.includes('localhost')) {
-      const URL = window.location.hostname.includes('localhost') 
-      ? 'http://localhost:8080/categorias'
-      : 'http://localhost:8080/categorias'; //a url para por online vai aqui
+      const URL = window.location.hostname.includes('localhost')
+        ? 'http://localhost:8080/categorias'
+        : 'https://nerdflix1.herokuapp.com/categorias'; // a url para por online vai aqui
       fetch(URL)
         .then(async (respostaDoServer) => {
           if (respostaDoServer.ok) {
             const resposta = await respostaDoServer.json();
-            //setCategorias(resposta);
-            return;
+            // setCategorias(resposta);
           }
-          //throw new Error('Não foi possível pegar os dados');
+          // throw new Error('Não foi possível pegar os dados');
         });
     }
   }, []);
