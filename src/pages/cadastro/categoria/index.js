@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import Formfield from '../../../components/FormField';
 import Button from '../../../components/Button';
+import useForm from '../../../hooks/UseForm';
 /* import { useState } from 'react'; */
 
 function CadastroCategoria() {
@@ -11,22 +12,11 @@ function CadastroCategoria() {
     descricao: '',
     cor: '',
   };
-  const [categorias, setCategorias] = useState([]);
-  const [values, setVelues] = useState(valoresIniciais);
 
-  function setValue(chave, valor) {
-    setVelues({
-      ...values,
-      [chave]: valor,
-    });
-  }
-  function handleChange(infosDoEvento) {
-    setValue(
-      infosDoEvento.target.getAttribute('name'),
-      infosDoEvento.target.value,
-    );
-  }
-  // first commit
+  const { handleChange, values, clearform } = useForm(valoresIniciais);
+
+  const [categorias, setCategorias] = useState([]);
+
   useEffect(() => {
     if (window.location.href.includes('localhost')) {
       const URL = window.location.hostname.includes('localhost')
@@ -36,20 +26,23 @@ function CadastroCategoria() {
         .then(async (respostaDoServer) => {
           if (respostaDoServer.ok) {
             const resposta = await respostaDoServer.json();
-            // setCategorias(resposta);
+            setCategorias([
+              ...resposta,
+            ]);
           }
-          // throw new Error('Não foi possível pegar os dados');
+          //throw new Error('Não foi possível pegar os dados');
         });
     }
-  }, []);
+  },
+  []);
 
-  { /* informa erro
+  /* informa erro
     function handleChange(infosDoEvento){
     const { getAttribute, value } = infosDoEvento.target;
     setValue(
       getAttribute('name'),
        value);
-  } */ }
+  } */
 
   return (
     <PageDefault>
@@ -65,7 +58,7 @@ function CadastroCategoria() {
           values,
         ]);
 
-        setVelues(valoresIniciais);
+        clearform(valoresIniciais);
       }}
       >
         <Formfield
@@ -105,13 +98,13 @@ function CadastroCategoria() {
 
       <ul>
         {categorias.map((categoria) => (
-          <li key={`${categoria.nome}`}>
-            {categoria.nome}
+          <li key={`${categoria.titulo}`}>
+            {categoria.titulo}
           </li>
         ))}
       </ul>
 
-      <Link to="/">
+      <Link class="linkCadastro" to="/">
         Ir para a home
       </Link>
     </PageDefault>
