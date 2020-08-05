@@ -30,7 +30,7 @@ function CadastroCategoria() {
               ...resposta,
             ]);
           }
-          //throw new Error('Não foi possível pegar os dados');
+          // throw new Error('Não foi possível pegar os dados');
         });
     }
   },
@@ -67,6 +67,7 @@ function CadastroCategoria() {
           name="nome"
           value={values.nome}
           onChange={handleChange}
+          //suggestion={null}
         />
         <Formfield
           label="Descrição"
@@ -97,14 +98,15 @@ function CadastroCategoria() {
       )}
 
       <ul>
-        {categorias.map((categoria) => (
-          <li key={`${categoria.titulo}`}>
-            {categoria.titulo}
+        console.log("ola", categorias.map);
+        {categorias.map((categoria) => ( // estava (categoria)
+          <li key={`${categoria.titulo}`}> {/*estava (categoria)*/}
+            {categoria.titulo}  {/*estava (categoria*/}
           </li>
         ))}
       </ul>
 
-      <Link class="linkCadastro" to="/">
+      <Link className="linkCadastro" to="/">
         Ir para a home
       </Link>
     </PageDefault>

@@ -79,7 +79,7 @@ function Formfield({
   const tag = isTextarea ? 'textarea' : 'input';
 
   const hasValue = Boolean(value.length);
-  const hasSuggestions = Boolean(suggestions.length);
+  const hasSuggestions = Boolean(suggestions ? suggestions.length : false); //vitor suggestion
 
   return (
     <FormFieldWrapper>
@@ -115,7 +115,7 @@ function Formfield({
         }
       </Label>
     </FormFieldWrapper>
-  );
+  )
 }
 
 Formfield.defaultProps = {

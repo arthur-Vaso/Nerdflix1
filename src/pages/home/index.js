@@ -31,10 +31,10 @@ function Home() {
 
         {/* {JSON.stringify(dadosIniciais)} */}
 
-        {dadosIniciais.map((categoria, indice) => {
+        {dadosIniciais.map((categoria, indice) => { //estava categoria
           if (indice === 0) {
             return (
-              <div key={categoria.id}>
+              <div key={categoria.id}> {/*estava categoria*/}
                 <BannerMain
                   videoTitle={dadosIniciais[0].videos[0].titulo}
                   url={dadosIniciais[0].videos[0].url}
@@ -51,42 +51,12 @@ function Home() {
 
           return (
             <Carousel
-              key={categoria.cor}
-              category={categoria}
+              key={categoria.cor} //estava categoria.
+              category={categoria} //estava categoria
             />
           );
         })}
 
-        {/* <BannerMain
-        videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
-        url={dadosIniciais.categorias[0].videos[0].url}
-        videoDescription="O que é Front-end? Trabalhando na área os termos HTML, CSS e JavaScript fazem parte da rotina das desenvolvedoras e desenvolvedores. Mas o que eles fazem, afinal? Descubra com a Vanessa!"
-      />
-
-      {<Carousel
-        ignoreFirstVideo
-        category={dadosIniciais.categorias[0]}
-      }/>
-
-      <Carousel
-        category={dadosIniciais.categorias[1]}
-      />
-
-      <Carousel
-        category={dadosIniciais.categorias[2]}
-      />
-
-      <Carousel
-        category={dadosIniciais.categorias[3]}
-      />
-
-      <Carousel
-        category={dadosIniciais.categorias[4]}
-      />
-
-      <Carousel
-        category={dadosIniciais.categorias[5]}
-      /> */}
       </PageDefaelt>
     </div>
   );

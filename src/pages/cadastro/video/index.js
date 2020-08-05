@@ -10,7 +10,8 @@ import categoriaRepository from '../../../repositories/categorias';
 function CadastroVideo() {
   const history = useHistory();
   const [categorias, setCategorias] = useState([]);
-  //const categoryTitles = categorias.map(({ titulo }) => titulo); 
+  // console.log(categorias.titulo);
+  // const categoryTitles = categorias.map(({ titulo }) => titulo);
   const { handleChange, values } = useForm({
     titulo: '',
     url: '',
@@ -18,13 +19,11 @@ function CadastroVideo() {
   });
 
   useEffect(() => {
-    categoriaRepository
-      .getAll()
-      .then((categoriasFromServer) => {
-        setCategorias(categoriasFromServer);
-      });
+    categoriaRepository.getAll().then((categoriasFromServer) => {
+      setCategorias(categoriasFromServer);
+    });
     setCategorias();
-  }, []); // NÃO ESQUECER DO [] PARA NAO MANDAR ZILHAO DE REQUESTS PARA O SERVER
+  }, []); // NÃO ESQUECER DO [] PARA NAO MANDAR um ZILHAO DE REQUESTS PARA O SERVER
 
   return (
     <PageDefault>
@@ -35,9 +34,8 @@ function CadastroVideo() {
         // eslint-disable-next-line no-alert
         // alert('Video cadastrado com sucesso!!!');
 
-        const categoriaEscolhida = categorias.find((categoria) => {
-          return categoria.titulo === values.categoria;
-        });
+        const categoriaEscolhida = categorias.find((categoria) => categoria.titulo === values.categoria);
+        // estava const categoriaEscolhida = categorias.find((categoria) => categoriastitulo === values.categoria);
 
         videosRepository.create({
           titulo: values.titulo,
@@ -67,7 +65,7 @@ function CadastroVideo() {
           name="categoria"
           value={values.categoria}
           onChange={handleChange}
-          suggestions={'nome'/* categoryTitles */}
+          suggestion="nome" // estava sugestions
         />
 
         <Button type="submit">
